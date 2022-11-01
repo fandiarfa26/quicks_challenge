@@ -1,9 +1,14 @@
+import Quicks from "./components/Quicks";
+import {RecoilRoot} from 'recoil'
+
 
 function App() {
   return (
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
+    <RecoilRoot>
+      <div className="w-screen h-screen bg-gray-800">
+        <Quicks/>
+      </div>
+    </RecoilRoot>
   );
 }
 
