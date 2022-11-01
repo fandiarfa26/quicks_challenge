@@ -14,7 +14,7 @@ const QuicksButton = () => {
   if (currentActive === '') {
     classList = 'bg-primary z-10'
   } else {
-    classList = 'mr-4 bg-secondary-dark'
+    classList = 'mr-5 bg-secondary-dark'
   }
 
   const handleClick = () => {

@@ -12,17 +12,17 @@ const InboxSubButton = () => {
 
   if (isQuicksOpen) {
     if (currentActive === 'inbox') {
-      classList = 'z-10 order-first bg-indicator-purple fab'
+      classList = 'z-10 bg-indicator-purple fab bottom-0 right-0'
     }else {
-      classList = 'order-1 bg-secondary-white fab-sm mr-8'
+      classList = 'bg-secondary-white fab-sm bottom-1 right-24'
     }
   } else {
-    classList = 'order-1 bg-secondary-white fab-sm '
+    classList = 'bg-secondary-white fab-sm bottom-1 right-0'
   }
 
   return (
       <div 
-        className={`transition-all ease-in-out ${classList}`}
+        className={`absolute  transition-all ease-in-out ${classList}`}
         onMouseEnter={() => setLabelShow(true)} 
         onMouseLeave={() => setLabelShow(false)}
         onClick={() => setCurrentActive('inbox')}

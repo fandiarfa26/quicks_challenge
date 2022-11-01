@@ -12,20 +12,20 @@ const TaskSubButton = () => {
 
   if (isQuicksOpen) {
     if (currentActive === 'task') {
-      classList = 'z-10 order-first bg-indicator-orange fab'
+      classList = 'z-10 bg-indicator-orange fab bottom-0 right-0'
     }else if(currentActive === '') {
-      classList = 'order-2 bg-secondary-white fab-sm mr-8'
+      classList = 'bg-secondary-white fab-sm bottom-1 right-48'
     }else {
-      classList = 'order-1 bg-secondary-white fab-sm mr-8'
+      classList = 'bg-secondary-white fab-sm bottom-1 right-24'
     }
   } else {
-    classList = 'order-2 bg-secondary-white fab-sm translate-x-16 mr-1'
+    classList = 'bg-secondary-white fab-sm bottom-1 right-0'
   }
 
   return (
     
       <div 
-        className={`transition-all ease-in-out ${classList}`} 
+        className={`absolute    transition-all ease-in-out ${classList}`} 
         onMouseEnter={() => setLabelShow(true)} 
         onMouseLeave={() => setLabelShow(false)}
         onClick={() => setCurrentActive('task')}
