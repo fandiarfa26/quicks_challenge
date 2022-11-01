@@ -10,4 +10,9 @@ const quicksActive = atom({
   default: ''
 })
 
-export {quicksOpen, quicksActive}
+const inboxOpen = atom({
+  key: 'detailInboxOpen',
+  default: false,
+})
+
+export {quicksOpen, quicksActive, inboxOpen}

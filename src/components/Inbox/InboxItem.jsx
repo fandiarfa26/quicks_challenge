@@ -1,11 +1,19 @@
 import React from 'react'
+import { useSetRecoilState } from 'recoil'
+import { inboxOpen } from '../../quick_recoil'
 import InboxAvatar from './InboxAvatar'
 import InboxAvatarGroup from './InboxAvatarGroup'
 import InboxIndicator from './InboxIndicator'
 
 const InboxItem = () => {
+  const setDetailInboxOpen = useSetRecoilState(inboxOpen)
+
+  const handleClick = () => {
+    setDetailInboxOpen(true)
+  }
+
   return (
-    <div className='py-[22px] flex items-center gap-1 cursor-pointer hover:bg-gray-100'>
+    <div className='py-[22px] flex items-center gap-1 cursor-pointer hover:bg-gray-100' onClick={handleClick}>
       <div className='flex flex-1'>
         <div className='flex justify-center w-16'>
           <InboxAvatarGroup/>

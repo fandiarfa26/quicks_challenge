@@ -27,7 +27,7 @@ const InboxSubButton = () => {
         onMouseLeave={() => setLabelShow(false)}
         onClick={() => setCurrentActive('inbox')}
         >
-        <div className={`absolute text-sm font-bold -top-6 text-secondary-white ${labelShow ? '' : 'hidden'}`}>Inbox</div>
+        <div className={`absolute text-sm font-bold -top-6 text-secondary-white ${labelShow && currentActive !== 'inbox' ? '' : 'hidden'}`}>Inbox</div>
         <MdOutlineQuestionAnswer className={`w-6 h-6 ${currentActive === 'inbox' ? 'text-white' : 'text-indicator-purple'}`}/>
       </div>
   )

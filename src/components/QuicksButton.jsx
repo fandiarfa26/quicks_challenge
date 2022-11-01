@@ -1,6 +1,6 @@
 import React from 'react'
-import {useRecoilState, useRecoilValue} from 'recoil'
-import { quicksActive, quicksOpen } from '../quick_recoil'
+import {useRecoilState, useRecoilValue, useSetRecoilState} from 'recoil'
+import { inboxOpen, quicksActive, quicksOpen } from '../quick_recoil'
 import quicksLogo from '../assets/quicks.svg'
 import TaskButton from '../components/Task/TaskButton'
 import InboxButton from '../components/Inbox/InboxButton'
@@ -8,6 +8,7 @@ import InboxButton from '../components/Inbox/InboxButton'
 const QuicksButton = () => {
   const [isOpen, setIsOpen] = useRecoilState(quicksOpen)
   const [currentActive, setCurrentActive] = useRecoilState(quicksActive)
+  const setDetailInboxOpen = useSetRecoilState(inboxOpen)
 
   let classList = ''
 
@@ -23,6 +24,7 @@ const QuicksButton = () => {
     } else {
       setCurrentActive('')
       setIsOpen(false)
+      setDetailInboxOpen(false)
     }
   }
 
