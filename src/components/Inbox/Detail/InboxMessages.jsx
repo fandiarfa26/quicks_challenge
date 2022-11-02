@@ -6,8 +6,10 @@ import NewMessageText from './NewMessageText'
 import NewMessageButton from './NewMessageButton'
 
 const InboxMessages = () => {
+  
+
   return (
-    <div className='relative flex-1 px-8 py-3 overflow-y-auto'>
+    <div className='relative flex-1 w-full px-8 py-3 overflow-y-auto'>
       <MessageDateText/>
       <FromOtherBubble/>
       <FromYouBubble/>
@@ -15,6 +17,7 @@ const InboxMessages = () => {
       <FromOtherBubble/>
       <FromYouBubble/>
       <NewMessageText/>
+        
       <NewMessageButton/>
       <FromOtherBubble/>
     </div>
