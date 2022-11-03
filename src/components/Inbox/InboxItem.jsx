@@ -5,7 +5,7 @@ import InboxAvatar from './InboxAvatar'
 import InboxAvatarGroup from './InboxAvatarGroup'
 import InboxIndicator from './InboxIndicator'
 
-const InboxItem = () => {
+const InboxItem = ({item}) => {
   const setDetailInboxOpen = useSetRecoilState(inboxOpen)
 
   const handleClick = () => {
@@ -13,24 +13,23 @@ const InboxItem = () => {
   }
 
   return (
-    <div className='py-[22px] flex items-center gap-1 cursor-pointer hover:bg-gray-100' onClick={handleClick}>
+    <div className='transition ease-in-out py-[22px] flex items-center gap-1 cursor-pointer hover:bg-gray-50' onClick={handleClick}>
       <div className='flex flex-1'>
         <div className='flex justify-center w-16'>
-          <InboxAvatarGroup/>
-          {/* <InboxAvatar/> */}
+          {
+            item.participants > 2 ? <InboxAvatarGroup/> : <InboxAvatar title={item.title}/>
+          }
         </div>
         <div className='flex-1'>
-          <div className='flex items-start gap-4'>
-            <div className='max-w-md font-bold text-primary'>Jeannette Moraima Guaman Chamba (Hutto I-589) [ Hutto Follow Up - Brief Service ]</div>
-            <div className='text-sm text-secondary-dark'>02/06/2021 10:45</div>
+          <div className='flex items-start gap-5'>
+            <div className='max-w-md font-bold text-primary'>{item.title}</div>
+            <div className='text-sm text-secondary-dark'>{item.datetime}</div>
           </div>
-          <div className='text-sm font-bold'>Cameron Phillips :</div>
-          <div className='max-w-md text-sm truncate'>
-            I understand your initial concerns and thats very valid, Elizabeth. But you nakjsn akjsn kas nakjs nakjs n
-          </div>
+          { item.participants > 2 && <div className='text-sm font-bold'>{item.new_message.user} :</div>}
+          <div className='max-w-md text-sm truncate'>{item.new_message.text}</div>
         </div>
       </div>
-      <InboxIndicator/>
+      <InboxIndicator hasRead={item.has_read}/>
     </div>
   )
 }

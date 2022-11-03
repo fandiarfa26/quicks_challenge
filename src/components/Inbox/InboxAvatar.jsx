@@ -1,10 +1,10 @@
 import React from 'react'
 
-const InboxAvatar = () => {
+const InboxAvatar = ({title}) => {
   return (
     <div className='bg-primary avatar'>
-        <span className="text-white font-bold">F</span>
-      </div>
+      <span className="font-bold text-white">{title.charAt(0).toUpperCase()}</span>
+    </div>
   )
 }
 

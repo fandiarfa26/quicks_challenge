@@ -1,8 +1,8 @@
 import React from 'react'
 
-const InboxIndicator = () => {
+const InboxIndicator = ({hasRead}) => {
   return (
-    <div className='w-2.5 h-2.5 rounded-full bg-indicator-red'></div>
+    <div className={`w-2.5 h-2.5 rounded-full ${hasRead ? 'invisible' : 'bg-indicator-red'} `}></div>
   )
 }
 
