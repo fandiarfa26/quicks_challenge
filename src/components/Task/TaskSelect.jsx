@@ -15,7 +15,7 @@ const TaskSelect = () => {
           <span>My Task</span>
           <MdKeyboardArrowDown className='w-5 h-5'/>
       </a>
-      <div className={`mt-2 z-20 absolute py-1 flex flex-col w-48 bg-white shadow divide-y divide-secondary-light rounded border border-secondary-light ${isShow ? '':'hidden'}`}>
+      <div className={`mt-2 z-20 absolute py-1 flex flex-col w-48 bg-white shadow divide-y divide-secondary-light rounded border border-secondary ${isShow ? '':'hidden'}`}>
         <a href="#!" onClick={handleChoose} className='px-3 py-1 hover:bg-gray-50'>Personal Errands</a>
         <a href="#!" onClick={handleChoose} className='px-3 py-1 hover:bg-gray-50'>Urgent To-Do</a>
       </div>

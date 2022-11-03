@@ -31,7 +31,7 @@ const TaskSubButton = () => {
         onClick={() => setCurrentActive('task')}
         >
         <div className={`absolute text-sm font-bold -top-6 text-secondary-white ${labelShow && currentActive !== 'task' ? '' : 'hidden'}`}>Task</div>
-        <MdOutlineChromeReaderMode className={`w-6 h-6 ${currentActive == 'task' ? 'text-white' : 'text-indicator-orange'} `}/>
+        <MdOutlineChromeReaderMode className={`w-6 h-6 ${currentActive === 'task' ? 'text-white' : 'text-indicator-orange'} `}/>
       </div>
   )
 }

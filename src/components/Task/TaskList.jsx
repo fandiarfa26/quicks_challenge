@@ -1,6 +1,5 @@
 import React from 'react'
 import TaskItem from './TaskItem'
-import NewTaskItem from './NewTaskItem'
 import TaskListLoading from './TaskListLoading'
 
 const TaskList = () => {
@@ -15,7 +14,6 @@ const TaskList = () => {
       <TaskItem/>
       <TaskItem/>
       <TaskItem/>
-      <NewTaskItem/>
     </div>
   )
 }

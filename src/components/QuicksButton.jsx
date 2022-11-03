@@ -1,9 +1,7 @@
 import React from 'react'
-import {useRecoilState, useRecoilValue, useSetRecoilState} from 'recoil'
+import {useRecoilState, useSetRecoilState} from 'recoil'
 import { inboxOpen, quicksActive, quicksOpen } from '../quick_recoil'
 import quicksLogo from '../assets/quicks.svg'
-import TaskButton from '../components/Task/TaskButton'
-import InboxButton from '../components/Inbox/InboxButton'
 
 const QuicksButton = () => {
   const [isOpen, setIsOpen] = useRecoilState(quicksOpen)

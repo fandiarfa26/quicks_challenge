@@ -1,43 +1,87 @@
-import React from 'react'
+import React, { useState } from 'react'
 import TaskCheckbox from './TaskCheckbox'
 import TaskCollapseItemButton from './TaskCollapseItemButton'
 import TaskMoreHoriz from './TaskMoreHoriz'
 import {MdOutlineSchedule, MdOutlineEdit} from 'react-icons/md'
 import TaskDatepicker from './TaskDatepicker'
+import TaskDaysLeftText from './TaskDaysLeftText'
 
 const TaskItem = () => {
+  const [isExpanded, setIsExpanded] = useState(true)
+  const [isChecked, setIsChecked] = useState(false)
+  const [isEditDesc, setIsEditDesc] = useState(false)
+  const [isEditTitle, setIsEditTitle] = useState(false)
+  const [title, setTitle] = useState('This is title')
+  const [desc, setDesc] = useState('value description hehe')
+  const [date, setDate] = useState(null)
+
+  const handleEditTitleDone = (e) => {
+    if(e.key === 'Enter'){
+      if (title !== '') {
+        setIsEditTitle(false)
+      }
+    }
+  }
+
+  const loadTitle = () => {
+    if (isEditTitle) {
+      return (
+        <div className='w-1/2'>
+          <input 
+            type="text" 
+            className='rounded-[5px] border border-secondary w-full' 
+            placeholder='Type Task Title' 
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            onKeyDown={handleEditTitleDone}
+            />
+        </div>
+      )
+    }
+    return (
+      <div 
+        onClick={() => setIsEditTitle(true)}
+        className={`w-1/2 font-bold ${isChecked ? 'line-through text-secondary' : ''}`}>
+        {title}
+      </div>
+    )
+  }
+
   return (
     <div className='py-[22px] flex gap-3 items-start'>
-      <TaskCheckbox/>
-      <div className='flex flex-col'>
+      <TaskCheckbox isChecked={isChecked} setIsChecked={setIsChecked}/>
+      <div className='flex flex-col w-full'>
         <div className='flex items-start'>
-          <div className='w-1/2 font-bold line-through text-secondary'>
-            Set up documentation report for several Cases : Case 145443, Case 192829 and Case 182203
-          </div>
+          {loadTitle()}
           <div className='flex items-center justify-end w-1/2 gap-3'>
-            <div className='text-sm text-indicator-red'>2 Days left</div>
-            <div className='text-sm '>12/06/2021</div>
-            <TaskCollapseItemButton/>
+            { !isChecked && date !== null && <TaskDaysLeftText date={date}/> }
+            { date !== null && <div className='text-sm '>{date.toString()}</div>}
+            <TaskCollapseItemButton isExpanded={isExpanded} setIsExpanded={setIsExpanded}/>
             <TaskMoreHoriz/>
           </div>
         </div>
         {/* Detail */}
-        <div>
+        <div className={isExpanded ? '' : 'hidden'}>
           <div className='flex items-center gap-4 mt-3'>
             <a href="#!">
               <MdOutlineSchedule className='w-5 h-5 text-primary'/>
             </a>
-            <TaskDatepicker/>
+            <TaskDatepicker dateValue={date} setDateValue={setDate}/>
           </div>
           <div className='flex items-start gap-4 mt-3'>
-            <a href="#!">
+            <a href="#!" onClick={() => setIsEditDesc(!isEditDesc)}>
               <MdOutlineEdit className='w-5 h-5 text-primary'/>
             </a>
             <div className="w-11/12">
-              <span>
-                Closing off this case since this application has been cancelled. No one really understand how this case could possibly be cancelled. The options and the documents within this document were totally a guaranteed for a success!
-              </span>
-              <textarea onChange={() => console.log()} className='rounded-[5px] border border-secondary w-full' rows="4" value="Closing off this case since this application has been cancelled. No one really understand how this case could possibly be cancelled. The options and the documents within this document were totally a guaranteed for a success!"></textarea>
+              {
+                isEditDesc 
+                ? <textarea 
+                    onChange={(e) => setDesc(e.target.value)} 
+                    className='rounded-[5px] border border-secondary w-full' 
+                    rows="4" 
+                    value={desc}></textarea> 
+                : <span onClick={() => setIsEditDesc(true)}>{desc === '' ? 'No Description' : desc}</span> 
+              }
             </div>
           </div>
         </div>
