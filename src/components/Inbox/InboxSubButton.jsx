@@ -22,7 +22,7 @@ const InboxSubButton = () => {
 
   return (
       <div 
-        className={`absolute  transition-all ease-in-out ${classList}`}
+        className={`absolute duration-500 transition-all ease-in-out ${classList}`}
         onMouseEnter={() => setLabelShow(true)} 
         onMouseLeave={() => setLabelShow(false)}
         onClick={() => setCurrentActive('inbox')}

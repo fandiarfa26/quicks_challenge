@@ -1,16 +1,24 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { useSetRecoilState } from 'recoil'
-import { inboxOpen } from '../../quick_recoil'
+import { fakeGroupInboxDetailData, fakeSingleInboxDetailData } from '../../fake_data'
+import { inboxDetailData, inboxOpen } from '../../quick_recoil'
 import InboxAvatar from './InboxAvatar'
 import InboxAvatarGroup from './InboxAvatarGroup'
 import InboxIndicator from './InboxIndicator'
 
 const InboxItem = ({item}) => {
   const setDetailInboxOpen = useSetRecoilState(inboxOpen)
+  const setDetailData = useSetRecoilState(inboxDetailData)
 
-  const handleClick = () => {
+  const handleClick = useCallback(async () => {
+    await setDetailData({})
+    if (item.participants > 2) {
+      await setDetailData(fakeGroupInboxDetailData)
+    } else {
+      await setDetailData(fakeSingleInboxDetailData)
+    }
     setDetailInboxOpen(true)
-  }
+  }, [item.participants, setDetailData, setDetailInboxOpen])
 
   return (
     <div className='transition ease-in-out py-[22px] flex items-center gap-1 cursor-pointer hover:bg-gray-50' onClick={handleClick}>

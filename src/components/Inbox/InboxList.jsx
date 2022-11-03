@@ -1,20 +1,24 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import { useRecoilValue } from 'recoil'
+import { useRecoilState } from 'recoil'
+import { fakeInboxListData } from '../../fake_data'
 import { inboxListData } from '../../quick_recoil'
 import InboxItem from './InboxItem'
 import InboxListLoading from './InboxListLoading'
 
 const InboxList = () => {
   const [loading, setLoading] = useState(false)
-  const data = useRecoilValue(inboxListData)
+  const [data, setData] = useRecoilState(inboxListData)
 
   const getFakeData = useCallback(async () => {
-    setLoading(true);
-    fetch("https://reqres.in/api/users?delay=2")
-     .then((respose) => {
-       setLoading(false)
-    });
-  }, [setLoading])
+    setLoading(true)
+    fetch("https://reqres.in/api/users?delay=1")
+      .then((respose) => {
+        setData(fakeInboxListData)
+      })
+      .then((respose) => {
+        setLoading(false)
+      });
+  }, [setLoading, setData])
 
   useEffect(() => {
     getFakeData()
