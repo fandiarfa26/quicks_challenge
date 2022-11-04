@@ -1,19 +1,20 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import TaskCheckbox from './TaskCheckbox'
 import TaskCollapseItemButton from './TaskCollapseItemButton'
 import TaskMoreHoriz from './TaskMoreHoriz'
 import {MdOutlineSchedule, MdOutlineEdit} from 'react-icons/md'
 import TaskDatepicker from './TaskDatepicker'
 import TaskDaysLeftText from './TaskDaysLeftText'
+import moment from 'moment'
 
-const TaskItem = () => {
-  const [isExpanded, setIsExpanded] = useState(true)
-  const [isChecked, setIsChecked] = useState(false)
+const TaskItem = ({item}) => {
+  const [isExpanded, setIsExpanded] = useState(!item.is_checked)
+  const [isChecked, setIsChecked] = useState(item.is_checked)
   const [isEditDesc, setIsEditDesc] = useState(false)
   const [isEditTitle, setIsEditTitle] = useState(false)
-  const [title, setTitle] = useState('This is title')
-  const [desc, setDesc] = useState('value description hehe')
-  const [date, setDate] = useState(null)
+  const [title, setTitle] = useState(item.title)
+  const [desc, setDesc] = useState(item.description)
+  const [date, setDate] = useState(item.date)
 
   const handleEditTitleDone = (e) => {
     if(e.key === 'Enter'){

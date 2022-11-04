@@ -26,4 +26,16 @@ const inboxDetailData = atom({
   default: {},
 })
 
-export {quicksOpen, quicksActive, inboxOpen, inboxListData, inboxDetailData}
+const taskListData = atom({
+  key: 'task-list-data',
+  default: [],
+})
+
+export {
+  quicksOpen, 
+  quicksActive, 
+  inboxOpen, 
+  inboxListData, 
+  inboxDetailData, 
+  taskListData
+}
