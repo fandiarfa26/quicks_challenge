@@ -52,7 +52,7 @@ const FromOtherBubble = ({item , isGroup}) => {
           <div className='mb-2'>{item.text}</div> 
           <div>{item.time}</div>
         </div>
-        <MoreHorizButton/>
+        <MoreHorizButton id={item.id}/>
       </div>
     </div>
   )

@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
 import {MdMoreHoriz} from 'react-icons/md'
+import { useRecoilState } from 'recoil'
+import { inboxDetailData } from '../../../quick_recoil'
 
-const MoreHorizButton = () => {
+const MoreHorizButton = ({id}) => {
   const [isShow, setIsShow] = useState(false)
+  const [data, setData] = useRecoilState(inboxDetailData)
 
   const handleEdit = () => {
     // edit message
@@ -11,6 +14,14 @@ const MoreHorizButton = () => {
 
   const handleDelete = () => {
     // delete message
+    let newData = {...data}
+
+    let messages_by_date = [...data.messages_by_date]
+    newData.messages_by_date = messages_by_date.map(obj => {
+      return {...obj, messages: obj.messages.filter(msg => msg.id !== id)}
+    })
+
+    setData(newData)
     setIsShow(false)
   }
   
