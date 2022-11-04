@@ -15,7 +15,7 @@ const TaskDatepicker = ({dateValue, setDateValue}) => {
       render={(value, openCalendar) => {
         return (
           <a href="#!" onClick={openCalendar} className="px-2 py-1 rounded-[5px] border border-secondary flex gap-10 items-center">
-            <span>{value !== '' ? value : 'Set Date'}</span>  
+            <span className={dateValue === null ?'text-secondary' :'text-black'}>{value !== '' ? value : 'Set Date'}</span>  
             <MdCalendarToday className="w-4 h-4 text-secondary-dark"/>
           </a>
         )

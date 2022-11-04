@@ -14,7 +14,8 @@ const TaskItem = ({item}) => {
   const [isEditTitle, setIsEditTitle] = useState(false)
   const [title, setTitle] = useState(item.title)
   const [desc, setDesc] = useState(item.description)
-  const [date, setDate] = useState(new DateObject({date: item.date, format: 'DD/MM/YYYY'}))
+  let initialDate = item.date !== null ? new DateObject({date: item.date, format: 'DD/MM/YYYY'}) : null
+  const [date, setDate] = useState(initialDate)
 
   const handleEditTitleDone = (e) => {
     if(e.key === 'Enter'){
@@ -25,7 +26,7 @@ const TaskItem = ({item}) => {
   }
 
   const loadTitle = () => {
-    if (isEditTitle) {
+    if (isEditTitle || title.trim() === '') {
       return (
         <div className='w-1/2'>
           <input 
@@ -58,7 +59,7 @@ const TaskItem = ({item}) => {
             { !isChecked && date !== null && <TaskDaysLeftText date={date}/> }
             { date !== null && <div className='text-sm '>{date.toString()}</div>}
             <TaskCollapseItemButton isExpanded={isExpanded} setIsExpanded={setIsExpanded}/>
-            <TaskMoreHoriz/>
+            <TaskMoreHoriz taskItem={item}/>
           </div>
         </div>
         {/* Detail */}
@@ -81,7 +82,7 @@ const TaskItem = ({item}) => {
                     className='rounded-[5px] border border-secondary w-full' 
                     rows="4" 
                     value={desc}></textarea> 
-                : <span onClick={() => setIsEditDesc(true)}>{desc === '' ? 'No Description' : desc}</span> 
+                : <span className={item.description === '' ?'text-secondary' :'text-black'} onClick={() => setIsEditDesc(true)}>{desc === '' ? 'No Description' : desc}</span> 
               }
             </div>
           </div>

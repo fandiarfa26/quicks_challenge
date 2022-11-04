@@ -61,6 +61,11 @@ const taskListData = atom({
   default: [],
 })
 
+const taskMoreHorizOpenId = atom({
+  key: 'task-is-more-horiz-open',
+  default: '' 
+})
+
 export {
   quicksOpen, 
   quicksActive, 
@@ -72,5 +77,6 @@ export {
   messageMoreHorizOpenId,
   messageIsEditOrReply,
   messageText,
-  taskListData
+  taskListData,
+  taskMoreHorizOpenId
 }

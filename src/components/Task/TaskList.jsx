@@ -5,17 +5,19 @@ import { taskListData } from '../../quick_recoil'
 import QuicksBoxLoading from '../QuicksBoxLoading'
 import TaskItem from './TaskItem'
 
-const TaskList = () => {
+const TaskList = ({bottomRef}) => {
   const [loading, setLoading] = useState(false)
   const [data, setData] = useRecoilState(taskListData)
+  
 
   const getFakeData = useCallback(async () => {
+    
     setLoading(true)
     fetch("https://reqres.in/api/users?delay=1")
-      .then((respose) => {
+      .then((response) => {
         setData(fakeTaskListData)
       })
-      .then((respose) => {
+      .then((response) => {
         setLoading(false)
       });
   }, [setLoading, setData])
@@ -23,6 +25,7 @@ const TaskList = () => {
   useEffect(() => {
     getFakeData()
   }, [getFakeData])
+
 
   if (loading) {
     return <QuicksBoxLoading text="Loading Task List..."/>
@@ -32,6 +35,7 @@ const TaskList = () => {
       {
         data.map((item, i) => <TaskItem key={i} item={item}/>)
       }
+      <div ref={bottomRef}></div>
     </div>
   )
 }
