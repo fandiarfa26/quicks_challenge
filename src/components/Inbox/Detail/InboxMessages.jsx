@@ -12,17 +12,19 @@ const InboxMessages = ({hasRead, messages, isGroup, bottomRef}) => {
 
     
     for (const message of messages) {
-      list.push(<MessageDateText key={message.date_text} text={message.date_text}/>)
-      
-      for (const item of message.messages) {
-        if (item.user === 'You') {
-          list.push(<FromYouBubble key={item.id} item={item}/>)
-        } else {
-          if (!hasRead && item.is_new) {
-            list.push(<NewMessageText key='new_message_text'/>)
-            list.push(<NewMessageButton key='new_message_button'/>)
+      if (message.messages.length > 0) {
+        list.push(<MessageDateText key={message.date_text} text={message.date_text}/>)
+        
+        for (const item of message.messages) {
+          if (item.user === 'You') {
+            list.push(<FromYouBubble key={item.id} item={item}/>)
+          } else {
+            if (!hasRead && item.is_new) {
+              list.push(<NewMessageText key='new_message_text'/>)
+              list.push(<NewMessageButton key='new_message_button'/>)
+            }
+            list.push(<FromOtherBubble key={item.id} item={item} isGroup={isGroup}/>)
           }
-          list.push(<FromOtherBubble key={item.id} item={item} isGroup={isGroup}/>)
         }
       }
     }

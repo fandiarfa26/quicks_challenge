@@ -35,6 +35,27 @@ const inboxDetailData = atom({
   default: {},
 })
 
+const messageMoreHorizOpenId = atom({
+  key: 'message-is-more-horiz-open',
+  default: '' 
+})
+
+const messageIsEditOrReply = atom({
+  key: 'message-is-edit-or-reply',
+  default: {
+    id: '',
+    user: '',
+    text: '',
+    type: 'edit', // edit or reply
+    status: false,
+  }
+})
+
+const messageText = atom({
+  key: 'message-text',
+  default: ''
+})
+
 const taskListData = atom({
   key: 'task-list-data',
   default: [],
@@ -48,5 +69,8 @@ export {
   inboxSearchValue,
   inboxDetailIsGroup,
   inboxDetailData, 
+  messageMoreHorizOpenId,
+  messageIsEditOrReply,
+  messageText,
   taskListData
 }

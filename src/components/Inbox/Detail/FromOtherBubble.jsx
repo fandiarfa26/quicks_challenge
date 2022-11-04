@@ -46,13 +46,14 @@ const FromOtherBubble = ({item , isGroup}) => {
 
   return (
     <div className='flex flex-col items-start gap-1 py-3'>
-      <div className={`text-xs font-bold ${nameColor}`}>{item.user}</div>
-      <div className='flex items-start max-w-md gap-2'>
-        <div className={`flex-1 p-3 text-xs rounded ${bubbleColor}`}>
-          <div className='mb-2'>{item.text}</div> 
-          <div>{item.time}</div>
+      <div className={`text-sm font-bold ${nameColor}`}>{item.user}</div>
+      {item.reply_text !== undefined && <div className='max-w-lg p-3 text-sm border rounded bg-secondary-white border-secondary'>{item.reply_text}</div>}
+      <div className='flex items-start max-w-lg gap-2'>
+        <div className={`flex-1 p-3  rounded ${bubbleColor}`}>
+          <div className='mb-2 text-sm'>{item.text}</div> 
+          <div className='text-xs'>{item.time}</div>
         </div>
-        <MoreHorizButton id={item.id}/>
+        <MoreHorizButton messageItem={item}/>
       </div>
     </div>
   )

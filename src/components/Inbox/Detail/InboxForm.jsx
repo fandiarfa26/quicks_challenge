@@ -1,12 +1,14 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { uid } from 'uid'
 import { useRecoilState } from 'recoil'
-import { inboxDetailData } from '../../../quick_recoil'
+import { inboxDetailData, messageIsEditOrReply, messageText,  } from '../../../quick_recoil'
 import moment from 'moment/moment'
+import EditReplyMessage from './EditReplyMessage'
 
 const InboxForm = ({bottomRef}) => {
-  const [text, setText] = useState('')
+  const [text, setText] = useRecoilState(messageText)
   const [data, setData] = useRecoilState(inboxDetailData)
+  const [isEditOrReply, setIsEditOrReply] = useRecoilState(messageIsEditOrReply)
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -16,7 +18,28 @@ const InboxForm = ({bottomRef}) => {
       setText('')
       return false
     }
+
+    // update message
+    if (isEditOrReply.type === 'edit' && isEditOrReply.status) {
+      let newData = {...data}
+
+      let messages_by_date = [...data.messages_by_date]
+      newData.messages_by_date = messages_by_date.map(obj => {
+        return {...obj, messages: obj.messages.map(message => {
+          if (message.id === isEditOrReply.id) {
+            return { ...message, text: text}
+          }
+          return message
+        })}
+      })
+
+      setData(newData)
+      setIsEditOrReply({...isEditOrReply, status: false})
+      setText('')
+      return false
+    } 
     
+    // insert message
     let messages_by_date = [...data.messages_by_date]
     const last = messages_by_date.at(-1)
     const nowDate = moment().format('MMMM DD, YYYY')
@@ -27,6 +50,10 @@ const InboxForm = ({bottomRef}) => {
       text: text,
       time: moment().format('HH:mm'),
       is_new: false,
+    }
+
+    if (isEditOrReply.type === 'reply' && isEditOrReply.status) {
+      newMessage.reply_text = isEditOrReply.text
     }
 
     let newData = {...data}
@@ -50,6 +77,7 @@ const InboxForm = ({bottomRef}) => {
     }
     
     setData(newData)
+    setIsEditOrReply({...isEditOrReply, status: false})
     setText('')
     setTimeout(function() {
       bottomRef.current.scrollIntoView({bottom: 0, behavior: 'smooth'});
@@ -57,10 +85,14 @@ const InboxForm = ({bottomRef}) => {
   }
 
   return (
-    <div className='px-8 pt-3 pb-6 bg-white rounded'>
-      <form action="#!" onSubmit={handleSubmit} className='flex items-center gap-3'>
-        <input type="text" value={text} onChange={(e) => setText(e.target.value)} className='flex-1 border border-secondary rounded-[5px] focus:ring-0' placeholder='Type a new message'/>
-        <button type="submit" className="rounded-[5px] bg-primary text-white py-2 px-4">
+    <div className={`px-8 pb-6 ${isEditOrReply.status ? '' : 'pt-3'}`}>
+      
+      <form action="#!" onSubmit={handleSubmit} className='flex items-end gap-3 '>
+        <div className='flex-1'>
+          {isEditOrReply.status && <EditReplyMessage/>}
+          <input type="text" value={text} onChange={(e) => setText(e.target.value)} className={`w-full border border-secondary  focus:ring-0 ${isEditOrReply.status ? 'rounded-b-[5px]' : 'rounded-[5px]'}`} placeholder='Type a new message'/>
+        </div>
+        <button type="submit" className="rounded-[5px] bg-primary text-white py-2 px-4 border border-primary">
           Send
         </button>
       </form>

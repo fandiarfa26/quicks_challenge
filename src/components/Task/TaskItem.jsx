@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import TaskCheckbox from './TaskCheckbox'
 import TaskCollapseItemButton from './TaskCollapseItemButton'
 import TaskMoreHoriz from './TaskMoreHoriz'
 import {MdOutlineSchedule, MdOutlineEdit} from 'react-icons/md'
 import TaskDatepicker from './TaskDatepicker'
 import TaskDaysLeftText from './TaskDaysLeftText'
-import moment from 'moment'
 
 const TaskItem = ({item}) => {
   const [isExpanded, setIsExpanded] = useState(!item.is_checked)
