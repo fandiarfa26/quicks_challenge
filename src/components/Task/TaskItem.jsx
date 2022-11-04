@@ -6,6 +6,7 @@ import {MdOutlineSchedule, MdOutlineEdit} from 'react-icons/md'
 import TaskDatepicker from './TaskDatepicker'
 import TaskDaysLeftText from './TaskDaysLeftText'
 import { DateObject } from 'react-multi-date-picker'
+import TaskItemTags from './TaskItemTags'
 
 const TaskItem = ({item}) => {
   const [isExpanded, setIsExpanded] = useState(!item.is_checked)
@@ -64,13 +65,13 @@ const TaskItem = ({item}) => {
         </div>
         {/* Detail */}
         <div className={isExpanded ? '' : 'hidden'}>
-          <div className='flex items-center gap-4 mt-3'>
+          <div className='flex items-center gap-4 px-2 mt-3 '>
             <a href="#!">
               <MdOutlineSchedule className='w-5 h-5 text-primary'/>
             </a>
             <TaskDatepicker dateValue={date} setDateValue={setDate}/>
           </div>
-          <div className='flex items-start gap-4 mt-3'>
+          <div className='flex items-start gap-4 px-2 mt-3'>
             <a href="#!" onClick={() => setIsEditDesc(!isEditDesc)}>
               <MdOutlineEdit className='w-5 h-5 text-primary'/>
             </a>
@@ -86,6 +87,7 @@ const TaskItem = ({item}) => {
               }
             </div>
           </div>
+          <TaskItemTags taskItem={item}/>
         </div>
       </div>
     </div>

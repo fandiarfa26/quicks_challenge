@@ -19,13 +19,6 @@ module.exports = {
         'indicator-yellow': '#F2C94C',
         'chats-purple-light': '#EEDCFF',
         'chats-purple-dark': '#9B51E0',
-        'stickers1': '#E9F3FF',
-        'stickers2': '#FDCFA4',
-        'stickers3': '#F9E9C3',
-        'stickers4': '#AFEBDB',
-        'stickers5': '#CBF1C2',
-        'stickers6': '#CFCEF9',
-        'stickers7': '#F9E0FD',
       },
       fontFamily: {
         'body': ['Lato', 'sans-serif'],

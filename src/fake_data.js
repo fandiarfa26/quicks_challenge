@@ -143,6 +143,7 @@ const fakeTaskListData = [
     date: '12/11/2022',
     description: 'Closing off this case since this application has been cancelled. No one really understand how this case could possibly be cancelled. The options and the documents within this document were totally a guaranteed for a success!',
     is_checked: false,
+    tags: ['Important ASAP', 'Offline Meeting']
   },
   {
     id: '2',
@@ -150,6 +151,7 @@ const fakeTaskListData = [
     date: '14/11/2022',
     description: 'All Cases must include all payment transactions, all documents and forms filled. All conversations in comments and messages in channels and emails should be provided as well in.',
     is_checked: false,
+    tags: ['Client Related', 'Self Task']
   },
   {
     id: '3',
@@ -157,6 +159,7 @@ const fakeTaskListData = [
     date: '22/11/2022',
     description: '',
     is_checked: false,
+    tags: []
   },
   {
     id: '4',
@@ -164,6 +167,7 @@ const fakeTaskListData = [
     date: '03/06/2021',
     description: '',
     is_checked: true,
+    tags: []
   },
   {
     id: '5',
@@ -171,6 +175,7 @@ const fakeTaskListData = [
     date: '02/06/2021',
     description: '',
     is_checked: true,
+    tags: []
   },
 ]
 
