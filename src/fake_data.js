@@ -53,7 +53,7 @@ const fakeGroupInboxDetailData = {
   is_connecting: false,
   messages_by_date: [
     {
-      date_text: 'Yesterday June 08, 2021',
+      date_text: 'June 08, 2021',
       messages: [
         {
           id: 'm1',
@@ -72,7 +72,7 @@ const fakeGroupInboxDetailData = {
       ]
     },
     {
-      date_text: 'Today June 09, 2021',
+      date_text: 'June 09, 2021',
       messages: [
         {
           id: 'm3',

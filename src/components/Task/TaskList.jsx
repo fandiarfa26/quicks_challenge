@@ -2,8 +2,8 @@ import React, { useState, useCallback, useEffect } from 'react'
 import { useRecoilState } from 'recoil'
 import { fakeTaskListData } from '../../fake_data'
 import { taskListData } from '../../quick_recoil'
+import QuicksBoxLoading from '../QuicksBoxLoading'
 import TaskItem from './TaskItem'
-import TaskListLoading from './TaskListLoading'
 
 const TaskList = () => {
   const [loading, setLoading] = useState(false)
@@ -25,7 +25,7 @@ const TaskList = () => {
   }, [getFakeData])
 
   if (loading) {
-    return <TaskListLoading/>
+    return <QuicksBoxLoading text="Loading Task List..."/>
   }
   return (
     <div className='flex-1 px-8 pb-6 overflow-y-auto divide-y divide-secondary'>

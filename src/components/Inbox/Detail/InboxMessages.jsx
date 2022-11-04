@@ -5,7 +5,7 @@ import FromYouBubble from './FromYouBubble'
 import NewMessageText from './NewMessageText'
 import NewMessageButton from './NewMessageButton'
 
-const InboxMessages = ({messages, isGroup}) => {
+const InboxMessages = ({hasRead, messages, isGroup, bottomRef}) => {
 
   const loadMessages = () => {
     let list = []
@@ -18,7 +18,7 @@ const InboxMessages = ({messages, isGroup}) => {
         if (item.user === 'You') {
           list.push(<FromYouBubble key={item.id} item={item}/>)
         } else {
-          if (item.is_new) {
+          if (!hasRead && item.is_new) {
             list.push(<NewMessageText key='new_message_text'/>)
             list.push(<NewMessageButton key='new_message_button'/>)
           }
@@ -33,6 +33,7 @@ const InboxMessages = ({messages, isGroup}) => {
   return (
     <div className='relative flex-1 w-full px-8 py-3 overflow-y-auto'>
       {loadMessages()}
+      <div id="bottom-messages" ref={bottomRef}></div>
     </div>
   )
 }

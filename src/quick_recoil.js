@@ -25,6 +25,11 @@ const inboxSearchValue = atom({
   default: '',
 })
 
+const inboxDetailIsGroup = atom({
+  key: 'inbox-detail-is-group',
+  default: false
+})
+
 const inboxDetailData = atom({
   key: 'inbox-detail-data',
   default: {},
@@ -41,6 +46,7 @@ export {
   inboxOpen, 
   inboxListData, 
   inboxSearchValue,
+  inboxDetailIsGroup,
   inboxDetailData, 
   taskListData
 }

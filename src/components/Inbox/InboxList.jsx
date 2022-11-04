@@ -3,7 +3,7 @@ import { useRecoilState, useRecoilValue } from 'recoil'
 import { fakeInboxListData } from '../../fake_data'
 import { inboxListData, inboxSearchValue } from '../../quick_recoil'
 import InboxItem from './InboxItem'
-import InboxListLoading from './InboxListLoading'
+import QuicksBoxLoading from '../QuicksBoxLoading'
 
 const InboxList = () => {
   const [loading, setLoading] = useState(false)
@@ -13,10 +13,10 @@ const InboxList = () => {
   const getFakeData = useCallback(async () => {
     setLoading(true)
     fetch("https://reqres.in/api/users?delay=1")
-      .then((respose) => {
+      .then((response) => {
         setData(fakeInboxListData)
       })
-      .then((respose) => {
+      .then((response) => {
         setLoading(false)
       });
   }, [setLoading, setData])
@@ -26,7 +26,7 @@ const InboxList = () => {
   }, [getFakeData])
 
   if (loading) {
-    return <InboxListLoading/>
+    return <QuicksBoxLoading text='Loading Chats ...'/>
   }
   return (
     <div className="flex-1 px-8 pb-6 overflow-y-auto divide-y divide-secondary">
@@ -39,6 +39,7 @@ const InboxList = () => {
             else if (val.title.toLowerCase().includes(search.toLowerCase())) {
               return val
             }
+            return false
           })
           .map((item, i) => <InboxItem key={i} item={item}/>)
       }
