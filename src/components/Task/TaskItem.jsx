@@ -5,6 +5,7 @@ import TaskMoreHoriz from './TaskMoreHoriz'
 import {MdOutlineSchedule, MdOutlineEdit} from 'react-icons/md'
 import TaskDatepicker from './TaskDatepicker'
 import TaskDaysLeftText from './TaskDaysLeftText'
+import { DateObject } from 'react-multi-date-picker'
 
 const TaskItem = ({item}) => {
   const [isExpanded, setIsExpanded] = useState(!item.is_checked)
@@ -13,7 +14,7 @@ const TaskItem = ({item}) => {
   const [isEditTitle, setIsEditTitle] = useState(false)
   const [title, setTitle] = useState(item.title)
   const [desc, setDesc] = useState(item.description)
-  const [date, setDate] = useState(item.date)
+  const [date, setDate] = useState(new DateObject({date: item.date, format: 'DD/MM/YYYY'}))
 
   const handleEditTitleDone = (e) => {
     if(e.key === 'Enter'){
