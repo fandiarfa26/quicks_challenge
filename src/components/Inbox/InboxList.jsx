@@ -1,13 +1,14 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useRecoilValue } from 'recoil'
 import { fakeInboxListData } from '../../fake_data'
-import { inboxListData } from '../../quick_recoil'
+import { inboxListData, inboxSearchValue } from '../../quick_recoil'
 import InboxItem from './InboxItem'
 import InboxListLoading from './InboxListLoading'
 
 const InboxList = () => {
   const [loading, setLoading] = useState(false)
   const [data, setData] = useRecoilState(inboxListData)
+  const search = useRecoilValue(inboxSearchValue)
 
   const getFakeData = useCallback(async () => {
     setLoading(true)
@@ -30,7 +31,16 @@ const InboxList = () => {
   return (
     <div className="flex-1 px-8 pb-6 overflow-y-auto divide-y divide-secondary">
       {
-        data.map((item, i) => <InboxItem key={i} item={item}/>)
+        data
+          .filter(val => {
+            if (search.trim() === '') {
+              return val
+            }
+            else if (val.title.toLowerCase().includes(search.toLowerCase())) {
+              return val
+            }
+          })
+          .map((item, i) => <InboxItem key={i} item={item}/>)
       }
     </div>
   )

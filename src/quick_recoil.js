@@ -15,10 +15,14 @@ const inboxOpen = atom({
   default: false,
 })
 
-
 const inboxListData = atom({
   key: 'inbox-list-data',
   default: [],
+})
+
+const inboxSearchValue = atom({
+  key: 'inbox-search-value',
+  default: '',
 })
 
 const inboxDetailData = atom({
@@ -36,6 +40,7 @@ export {
   quicksActive, 
   inboxOpen, 
   inboxListData, 
+  inboxSearchValue,
   inboxDetailData, 
   taskListData
 }
