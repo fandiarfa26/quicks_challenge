@@ -21,7 +21,7 @@ const QuicksBox = () => {
   }
 
   return (
-    <div className={`transition-all ease-in-out duration-500 w-[768px] h-4/6 bg-white rounded fixed bottom-36 ${currentActive !== '' ? 'translate-x-0 right-10' : 'right-0 translate-x-full' }`}>
+    <div className={`transition-all ease-in-out duration-500 w-[768px] h-4/6 bg-white rounded fixed shadow-lg bottom-36 ${currentActive !== '' ? 'translate-x-0 right-10' : 'right-0 translate-x-full' }`}>
       {
         loadBody()
       }
