@@ -7,55 +7,22 @@ import TaskDatepicker from './TaskDatepicker'
 import TaskDaysLeftText from './TaskDaysLeftText'
 import { DateObject } from 'react-multi-date-picker'
 import TaskItemTags from './TaskItemTags'
+import TaskTitle from './TaskTitle'
 
 const TaskItem = ({item}) => {
   const [isExpanded, setIsExpanded] = useState(!item.is_checked)
   const [isChecked, setIsChecked] = useState(item.is_checked)
   const [isEditDesc, setIsEditDesc] = useState(false)
-  const [isEditTitle, setIsEditTitle] = useState(false)
-  const [title, setTitle] = useState(item.title)
   const [desc, setDesc] = useState(item.description)
   let initialDate = item.date !== null ? new DateObject({date: item.date, format: 'DD/MM/YYYY'}) : null
   const [date, setDate] = useState(initialDate)
-
-  const handleEditTitleDone = (e) => {
-    if(e.key === 'Enter'){
-      if (title !== '') {
-        setIsEditTitle(false)
-      }
-    }
-  }
-
-  const loadTitle = () => {
-    if (isEditTitle || title.trim() === '') {
-      return (
-        <div className='w-1/2'>
-          <input 
-            type="text" 
-            className='rounded-[5px] border border-secondary w-full' 
-            placeholder='Type Task Title' 
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            onKeyDown={handleEditTitleDone}
-            />
-        </div>
-      )
-    }
-    return (
-      <div 
-        onClick={() => setIsEditTitle(true)}
-        className={`w-1/2 font-bold ${isChecked ? 'line-through text-secondary' : ''}`}>
-        {title}
-      </div>
-    )
-  }
 
   return (
     <div className='py-[22px] flex gap-3 items-start'>
       <TaskCheckbox isChecked={isChecked} setIsChecked={setIsChecked}/>
       <div className='flex flex-col w-full'>
         <div className='flex items-start'>
-          {loadTitle()}
+          <TaskTitle taskItem={item} isChecked={isChecked}/>
           <div className='flex items-center justify-end w-1/2 gap-3'>
             { !isChecked && date !== null && <TaskDaysLeftText date={date}/> }
             { date !== null && <div className='text-sm '>{date.toString()}</div>}

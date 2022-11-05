@@ -11,7 +11,6 @@ const TaskList = ({bottomRef}) => {
   
 
   const getFakeData = useCallback(async () => {
-    
     setLoading(true)
     fetch("https://reqres.in/api/users?delay=1")
       .then((response) => {
