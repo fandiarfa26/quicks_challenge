@@ -29,7 +29,7 @@ const InboxList = () => {
     return <QuicksBoxLoading text='Loading Chats ...'/>
   }
   return (
-    <div className="flex-1 px-8 pb-6 overflow-y-auto divide-y divide-secondary">
+    <div className="flex-1 px-8 pb-6 overflow-y-auto divide-y scrollbar divide-secondary">
       {
         data
           .filter(val => {

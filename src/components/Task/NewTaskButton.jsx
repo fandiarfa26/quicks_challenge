@@ -23,7 +23,7 @@ const NewTaskButton = ({bottomRef}) => {
   }
 
   return (
-    <a href="#!" onClick={handleAddTask} className='rounded-[5px] bg-primary text-white py-2 px-4'>
+    <a href="#!" onClick={handleAddTask} className='rounded-[5px] bg-primary hover:bg-primary-dark text-white py-2 px-4'>
       New Task
     </a>
   )

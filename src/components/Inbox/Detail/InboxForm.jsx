@@ -92,7 +92,7 @@ const InboxForm = ({bottomRef}) => {
           {isEditOrReply.status && <EditReplyMessage/>}
           <input type="text" value={text} onChange={(e) => setText(e.target.value)} className={`w-full border border-secondary  focus:ring-0 ${isEditOrReply.status ? 'rounded-b-[5px]' : 'rounded-[5px]'}`} placeholder='Type a new message'/>
         </div>
-        <button type="submit" className="rounded-[5px] bg-primary text-white py-2 px-4 border border-primary">
+        <button type="submit" className="rounded-[5px] bg-primary hover:bg-primary-dark text-white py-2 px-4 border border-primary">
           Send
         </button>
       </form>

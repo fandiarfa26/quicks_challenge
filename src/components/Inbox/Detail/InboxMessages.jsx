@@ -33,7 +33,7 @@ const InboxMessages = ({hasRead, messages, isGroup, bottomRef}) => {
   }
 
   return (
-    <div className='relative flex-1 w-full px-8 py-3 overflow-y-auto'>
+    <div className='relative flex-1 w-full px-8 py-3 overflow-y-auto scrollbar'>
       {loadMessages()}
       <div id="bottom-messages" ref={bottomRef}></div>
     </div>
