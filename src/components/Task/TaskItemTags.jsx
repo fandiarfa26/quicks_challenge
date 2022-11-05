@@ -42,7 +42,7 @@ const TaskItemTags = ({taskItem}) => {
     if (selected.length > 0) {
       return selected.map((tag, i) => {
         let sticker = stickersData.find(s => s.label === tag)
-        return <span className={`rounded px-2 py-1 text-sm ${sticker.color}`}>{tag}</span>
+        return <span key={i} className={`rounded px-2 py-1 text-sm ${sticker.color}`}>{tag}</span>
       })
     } else {
       return <span className='text-secondary'>No Sticker</span>

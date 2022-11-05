@@ -26,11 +26,13 @@ const TaskList = ({bottomRef}) => {
   }, [getFakeData])
 
 
+
   if (loading) {
     return <QuicksBoxLoading text="Loading Task List..."/>
   }
   return (
     <div className='flex-1 px-8 pb-6 overflow-y-auto divide-y scrollbar divide-secondary'>
+      
       {
         data.map((item, i) => <TaskItem key={i} item={item}/>)
       }
