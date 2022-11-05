@@ -3,13 +3,18 @@ import moment from 'moment'
 
 const TaskDaysLeftText = ({date}) => {
   const loadDays = () => {
-    var now = moment(new Date()); //todays date
-    var end = moment(new Date(date)); // another date
-    return Math.ceil(end.diff(now, 'days', true))
+    let now = moment(new Date()); //todays date
+    let end = moment(new Date(date)); // another date
+    let diff = Math.ceil(end.diff(now, 'days', true))
+    if (diff < 0) {
+      return ""
+    } else {
+      return `${diff} Days Left`
+    }
   }
 
   return (
-    <div className='text-sm text-indicator-red'>{loadDays()} Days left</div>
+    <div className='text-sm text-indicator-red'>{loadDays()}</div>
   )
 }
 
