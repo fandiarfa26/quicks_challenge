@@ -13,6 +13,7 @@ const NewTaskButton = ({bottomRef}) => {
       date: null,
       description: '',
       is_checked: false,
+      tags: [],
     }
 
     setData([...data, newTask])
