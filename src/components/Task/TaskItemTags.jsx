@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { MdOutlineBookmarks } from 'react-icons/md' 
 import { useRecoilState } from 'recoil'
 import { taskListData, taskTagsOpenId } from '../../quick_recoil'

@@ -1,5 +1,4 @@
 import React from 'react'
-import { useState } from 'react'
 import { useRecoilState } from 'recoil'
 import { taskEditTitleId, taskListData } from '../../quick_recoil'
 

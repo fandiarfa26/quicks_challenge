@@ -1,6 +1,4 @@
 import React, { useState } from 'react'
-import { useEffect } from 'react'
-import { useRef } from 'react'
 import {MdKeyboardArrowDown} from 'react-icons/md'
 import { useOutsideClick } from '../../useOutsideClick'
 

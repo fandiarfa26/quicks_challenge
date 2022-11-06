@@ -1,5 +1,4 @@
 import {atom} from 'recoil'
-import { fakeList } from './fake_data'
 
 const quicksOpen = atom({
   key: 'quicksOpen',

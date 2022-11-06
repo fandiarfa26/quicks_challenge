@@ -12,7 +12,7 @@ const useOutsideClick = (cb) => {
     }
     document.body.addEventListener('click', handleClick)
     return () => document.body.removeEventListener('click', handleClick)
-  }, [ref])
+  }, [ref, cb])
 
   return ref
 }

@@ -1,9 +1,7 @@
-import React, { useEffect } from 'react'
-import { useRef } from 'react'
+import React from 'react'
 import {MdMoreHoriz} from 'react-icons/md'
 import { useRecoilState } from 'recoil'
 import { taskListData, taskMoreHorizOpenId } from '../../quick_recoil'
-import { useOutsideClick } from '../../useOutsideClick'
 
 const TaskMoreHoriz = ({taskItem}) => {
   const [showId, setShowId] = useRecoilState(taskMoreHorizOpenId)

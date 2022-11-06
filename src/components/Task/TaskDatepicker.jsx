@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import DatePicker, { Calendar, DateObject } from "react-multi-date-picker";
+import React from 'react'
+import { Calendar, DateObject } from "react-multi-date-picker";
 import {MdCalendarToday, MdOutlineSchedule} from 'react-icons/md'
 import { useRecoilState } from 'recoil';
 import { taskDateOpenId, taskListData } from '../../quick_recoil';
