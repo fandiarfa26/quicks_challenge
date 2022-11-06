@@ -1,18 +1,16 @@
 import React, { useState } from 'react'
 import { MdOutlineEdit } from 'react-icons/md'
 import { useRecoilState } from 'recoil'
-import { taskListData } from '../../quick_recoil'
+import { taskEditDescId, taskListData } from '../../quick_recoil'
 
 const TaskItemDesc = ({taskItem}) => {
   const [data, setData] = useRecoilState(taskListData)
-  const [desc, setDesc] = useState(taskItem.description)
-  const [isEditDesc, setIsEditDesc] = useState(false)
+  const [editDescId, setEditDescId] = useRecoilState(taskEditDescId)
 
   const handleEdit = (e) => {
-    setDesc(e.target.value)
     let newData = data.map(obj => {
       if (obj.id === taskItem.id) {
-        obj.description = desc
+        return {...obj, description: e.target.value}
       }
       return obj
     })
@@ -22,22 +20,22 @@ const TaskItemDesc = ({taskItem}) => {
 
   return (
     <div className='flex items-start gap-4 px-2 mt-3'>
-      <a href="#!" onClick={() => setIsEditDesc(!isEditDesc)}>
-        <MdOutlineEdit className='w-5 h-5 text-primary'/>
+      <a href="#!" onClick={() => setEditDescId(editDescId !== '' ? '' : taskItem.id )}>
+        <MdOutlineEdit className={`w-5 h-5 ${taskItem.description.trim() !== '' ? 'text-primary' : 'text-secondary-dark' }`}/>
       </a>
       <div className="w-11/12">
         {
-          isEditDesc 
+          editDescId === taskItem.id
           ? <textarea 
               onChange={handleEdit} 
               className='rounded-[5px] border border-secondary w-full' 
               rows="4" 
-              value={desc}></textarea> 
-          : <span 
-              className={desc === '' ?'text-secondary' :'text-black'} 
-              onClick={() => setIsEditDesc(true)}>
-                {desc === '' ? 'No Description' : desc}
-              </span> 
+              value={taskItem.description}></textarea> 
+          : <div 
+              className={`w-full ${taskItem.description === '' ?'text-secondary' :'text-black'}`} 
+              onClick={() => setEditDescId(taskItem.id)}>
+                {taskItem.description === '' ? 'No Description' : taskItem.description}
+              </div> 
         }
       </div>
     </div>

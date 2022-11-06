@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useRef } from 'react'
 import {MdMoreHoriz} from 'react-icons/md'
 import { useRecoilState } from 'recoil'
 import { taskListData, taskMoreHorizOpenId } from '../../quick_recoil'
+import { useOutsideClick } from '../../useOutsideClick'
 
 const TaskMoreHoriz = ({taskItem}) => {
   const [showId, setShowId] = useRecoilState(taskMoreHorizOpenId)
@@ -9,11 +11,8 @@ const TaskMoreHoriz = ({taskItem}) => {
 
   const handleDelete = () => {
     // delete task
-    console.log(`click ${taskItem.id}`)
     let newData = data.filter(task => task.id !== taskItem.id)
-
-    setData(newData) // WHAT IS WRONG WITH THIS???, WHY THE LAST ITEM ALWAYS DELETED??
-    console.log(newData) // IT'S CORRECT
+    setData(newData)
     setShowId('')
   }
 

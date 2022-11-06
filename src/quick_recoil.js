@@ -1,4 +1,5 @@
 import {atom} from 'recoil'
+import { fakeList } from './fake_data'
 
 const quicksOpen = atom({
   key: 'quicksOpen',
@@ -62,12 +63,27 @@ const taskListData = atom({
 })
 
 const taskMoreHorizOpenId = atom({
-  key: 'task-is-more-horiz-open',
+  key: 'task-more-horiz-open-id',
   default: '' 
 })
 
 const taskTagsOpenId = atom({
   key: 'task-tags-open-id',
+  default: '',
+})
+
+const taskEditTitleId = atom({
+  key: 'task-edit-title-id',
+  default: ''
+})
+
+const taskEditDescId = atom({
+  key: 'task-edit-desc-id',
+  default: ''
+})
+
+const taskDateOpenId = atom({
+  key: 'task-date-open-id',
   default: '',
 })
 
@@ -84,5 +100,8 @@ export {
   messageText,
   taskListData,
   taskMoreHorizOpenId,
-  taskTagsOpenId
+  taskTagsOpenId,
+  taskEditTitleId,
+  taskEditDescId,
+  taskDateOpenId
 }

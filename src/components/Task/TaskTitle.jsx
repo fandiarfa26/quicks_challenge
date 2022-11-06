@@ -1,18 +1,16 @@
 import React from 'react'
 import { useState } from 'react'
 import { useRecoilState } from 'recoil'
-import { taskListData } from '../../quick_recoil'
+import { taskEditTitleId, taskListData } from '../../quick_recoil'
 
-const TaskTitle = ({taskItem, isChecked}) => {
+const TaskTitle = ({taskItem}) => {
   const [data, setData] = useRecoilState(taskListData)
-  const [title, setTitle] = useState(taskItem.title)
-  const [isEditTitle, setIsEditTitle] = useState(false)
+  const [editTitleId, setEditTitleId] = useRecoilState(taskEditTitleId)
 
   const handleEdit = (e) => {
-    setTitle(e.target.value)
     let newData = data.map(obj => {
       if (obj.id === taskItem.id) {
-        obj.title = title
+        return {...obj, title: e.target.value}
       }
       return obj
     })
@@ -21,21 +19,22 @@ const TaskTitle = ({taskItem, isChecked}) => {
   }
 
   const handleKeyDown = (e) => {
+    setEditTitleId(taskItem.id)
     if(e.key === 'Enter'){
-      if (title !== '') {
-        setIsEditTitle(false)
+      if (taskItem.title !== '') {
+        setEditTitleId('')
       }
     }
   }
 
-  if (isEditTitle || title.trim() === '') {
+  if (editTitleId === taskItem.id || taskItem.title.trim() === '') {
     return (
       <div className='w-1/2'>
         <input 
           type="text" 
           className='rounded-[5px] border border-secondary w-full' 
           placeholder='Type Task Title' 
-          value={title}
+          value={taskItem.title}
           onChange={handleEdit}
           onKeyDown={handleKeyDown}
           />
@@ -44,9 +43,9 @@ const TaskTitle = ({taskItem, isChecked}) => {
   }
   return (
     <div 
-      onClick={() => setIsEditTitle(true)}
-      className={`w-1/2 font-bold ${isChecked ? 'line-through text-secondary' : ''}`}>
-      {title}
+      onClick={() => setEditTitleId(taskItem.id)}
+      className={`w-1/2 font-bold ${taskItem.is_checked ? 'line-through text-secondary' : ''}`}>
+      {taskItem.title}
     </div>
   )
 }

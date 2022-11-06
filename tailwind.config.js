@@ -23,6 +23,9 @@ module.exports = {
       fontFamily: {
         'body': ['Lato', 'sans-serif'],
       },
+      transitionProperty: {
+        'width': 'width'
+      }
     },
   },
   plugins: [

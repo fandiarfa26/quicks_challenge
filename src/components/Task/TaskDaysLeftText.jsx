@@ -1,7 +1,10 @@
 import React from 'react'
 import moment from 'moment'
+import { DateObject } from "react-multi-date-picker";
 
-const TaskDaysLeftText = ({date}) => {
+const TaskDaysLeftText = ({taskItem}) => {
+  let date = taskItem.date !== '' ? new DateObject({date: taskItem.date, format: 'DD/MM/YYYY'}) : null
+
   const loadDays = () => {
     let now = moment(new Date()); //todays date
     let end = moment(new Date(date)); // another date

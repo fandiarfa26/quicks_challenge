@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { MdOutlineBookmarks } from 'react-icons/md' 
 import { useRecoilState } from 'recoil'
-import { taskTagsOpenId } from '../../quick_recoil'
+import { taskListData, taskTagsOpenId } from '../../quick_recoil'
 
 const TaskItemTags = ({taskItem}) => {
   const [showId, setShowId] = useRecoilState(taskTagsOpenId)
-  const [selected, setSelected] = useState(taskItem.tags)
+  const [data, setData] = useRecoilState(taskListData)
 
   const stickersData = [
     {label: 'Important ASAP', color: 'bg-[#E5F1FF]'},
@@ -27,20 +27,24 @@ const TaskItemTags = ({taskItem}) => {
   }
 
   const handleSelect = (label) => {
-    let data = [...selected]
-    if (data.includes(label)) {
-      let filteredData = data.filter(d => d !== label)
-      setSelected(filteredData)
-    } else {
-      data.push(label)
-      setSelected(data)
-    }
+    let newData = data.map(obj => {
+      if (obj.id === taskItem.id) {
+        if (obj.tags.includes(label)) {
+          return {...obj, tags: obj.tags.filter(d => d !== label)}
+        } else {
+          return {...obj, tags: [...obj.tags, label]}
+        }
+      }
+      return obj
+    })
+
+    setData(newData)
     setShowId('')
   }
 
   const loadTags = () => {
-    if (selected.length > 0) {
-      return selected.map((tag, i) => {
+    if (taskItem.tags.length > 0) {
+      return taskItem.tags.map((tag, i) => {
         let sticker = stickersData.find(s => s.label === tag)
         return <span key={i} className={`rounded px-2 py-1 text-sm ${sticker.color}`}>{tag}</span>
       })
@@ -52,7 +56,7 @@ const TaskItemTags = ({taskItem}) => {
   return (
     <div className="relative p-2 mt-3 rounded bg-[#f9f9f9]" onClick={handleShow}>
       <div className='flex items-start gap-4 '>
-        <MdOutlineBookmarks className='w-5 h-5 text-primary'/>
+        <MdOutlineBookmarks className={`w-5 h-5 ${taskItem.tags.length > 0 ? 'text-primary' : 'text-secondary-dark' }`}/>
         <div className="flex flex-wrap w-11/12 gap-2">
           {loadTags()}
         </div>
@@ -62,7 +66,7 @@ const TaskItemTags = ({taskItem}) => {
           stickersData.map((obj, i) => (
             <div 
               key={i} 
-              className={`rounded px-2 py-1 text-sm cursor-pointer border ${selected.includes(obj.label) ? 'border-primary' : 'border-white'} ${obj.color}`}
+              className={`rounded px-2 py-1 text-sm cursor-pointer border ${taskItem.tags.includes(obj.label) ? 'border-primary' : 'border-white'} ${obj.color}`}
               onClick={() => handleSelect(obj.label)}
               >
                 {obj.label}

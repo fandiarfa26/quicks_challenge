@@ -10,10 +10,11 @@ const NewTaskButton = ({bottomRef}) => {
     let newTask = {
       id: uid(),
       title: '',
-      date: null,
+      date: '',
       description: '',
       is_checked: false,
       tags: [],
+      is_expanded: true,
     }
 
     setData([...data, newTask])

@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
+import { useEffect } from 'react'
+import { useRef } from 'react'
 import {MdKeyboardArrowDown} from 'react-icons/md'
+import { useOutsideClick } from '../../useOutsideClick'
 
 const TaskSelect = () => {
   const [isShow, setIsShow] = useState(false)
@@ -9,9 +12,11 @@ const TaskSelect = () => {
     setIsShow(false)
   }
 
+  const ref = useOutsideClick(() => setIsShow(false))
+
   return (
     <div className='relative'>
-      <a href="#!" onClick={() => setIsShow(!isShow)} className='flex items-center gap-3 px-4 py-2 border rounded-[5px] border-secondary bg-white hover:bg-secondary-white'>
+      <a href="#!" ref={ref} onClick={() => setIsShow(!isShow)} className='flex items-center gap-3 px-4 py-2 border rounded-[5px] border-secondary bg-white hover:bg-secondary-white'>
           <span>My Task</span>
           <MdKeyboardArrowDown className='w-5 h-5'/>
       </a>
