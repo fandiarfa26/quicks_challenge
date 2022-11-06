@@ -1,8 +1,13 @@
 import Quicks from "./components/Quicks";
 import {RecoilRoot} from 'recoil'
 import {MdOutlineSearch} from 'react-icons/md'
+import { useEffect } from "react";
 
 function App() {
+  useEffect(() => {
+    document.title = "Simple Quicks"
+  }, [])
+  
   return (
     <RecoilRoot>
       <div className="w-screen h-screen bg-[#262626]">
